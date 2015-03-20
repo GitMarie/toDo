@@ -30,6 +30,12 @@
       <!-- Center content -->
       <ion-side-menu-content>
         <ion-header-bar class="bar-dark">
+          
+          <!-- add delete button here -->
+          <button class="button button-icon" ng-click="data.showDelete = !data.showDelete;">
+            <i class="icon ion-minus-circled"></i>
+          </button>
+          
           <button class="button button-icon" ng-click="toggleProjects()">
             <i class="icon ion-navicon"></i>
           </button>
@@ -39,10 +45,14 @@
             <i class="icon ion-compose"></i>
           </button>
         </ion-header-bar>
+        
         <ion-content scroll="false">
-          <ion-list>
+          
+          <!-- add delete button here -->
+          <ion-list show-delete = "data.showDelete">
             <ion-item ng-repeat="task in activeProject.tasks">
               {{task.title}}
+              <ion-delete-button class = "ion-minus-circled" ng-click = "activeProject.tasks.splice($index, 1)"></ion-delete-button>
             </ion-item>
           </ion-list>
         </ion-content>
